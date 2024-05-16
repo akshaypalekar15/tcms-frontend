@@ -22,6 +22,7 @@ const Customer = ({ customer, fetchCustomers }) => {
         `http://localhost:5000/api/customers/renew/${customer.id}`,
         renewalData
       );
+      console.log({ response });
       fetchCustomers();
       setSuccess(true);
       setError(false);
@@ -38,6 +39,7 @@ const Customer = ({ customer, fetchCustomers }) => {
         `http://localhost:5000/api/customers/upgradeDowngrade/${customer.id}`,
         upgradeDowngradeData
       );
+      console.log({ response });
       setSuccess(true);
       setError(false);
       fetchCustomers();
@@ -135,6 +137,7 @@ const Customer = ({ customer, fetchCustomers }) => {
 
 function ExistingCustomers() {
   const [customers, setCustomers] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchCustomers();
@@ -144,14 +147,16 @@ function ExistingCustomers() {
     try {
       const response = await axios.get("http://localhost:5000/api/customers");
       setCustomers(response.data);
+      setError(null);
     } catch (error) {
-      console.error("Error fetching customers:", error);
+      setError(error);
     }
   };
 
   return (
     <div className="existing-wrapper">
       <h2>Existing Customers</h2>
+      {error && <p style={{ color: "red" }}>Error while loading the data.</p>}
       <ul>
         {customers.map((customer) => (
           <Customer

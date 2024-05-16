@@ -20,18 +20,17 @@ function NewCustomer() {
   const [success, setSuccess] = useState(false);
   const [customers, setCustomers] = useState([]);
 
+  const fetchCustomers = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/customers");
+      setCustomers(response.data);
+      setError(null);
+    } catch (error) {
+      console.error("Error fetching customers:", error);
+      setError(error);
+    }
+  };
   useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/customers");
-        setCustomers(response.data);
-        setError(null);
-      } catch (error) {
-        console.error("Error fetching customers:", error);
-        setError(error);
-      }
-    };
-
     fetchCustomers();
   }, []);
 
@@ -47,11 +46,10 @@ function NewCustomer() {
         "http://localhost:5000/api/customers/new",
         formData
       );
-      console.log("New customer registered:", response.data);
+      setCustomers(response.data);
       setError(null);
       setSuccess(true);
     } catch (error) {
-      console.error("Error registering new customer:", error);
       setError(error);
       setSuccess(false);
     }
