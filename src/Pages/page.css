@@ -1,0 +1,58 @@
+.newcustomer-wrapper {
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  height: 400px;
+  position: relative;
+  left: 30%;
+  background: darkslategrey;
+  color: #fff;
+  overflow: scroll;
+}
+
+.title {
+  border-bottom: 1px solid;
+}
+
+.newcustomer-wrapper .form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.newcustomer-wrapper .form-container input,
+select {
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+.newcustomer-wrapper .form-container button {
+  margin-top: 14px;
+}
+
+.allcustomers-wrapper {
+  margin-top: 8px;
+  width: 600px;
+  height: 400px;
+  position: relative;
+  left: 30%;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+  background: grey;
+  color: #fff;
+}
+
+.allcustomers-wrapper .customers {
+  margin: 5px 0;
+}
+
+.existing-wrapper li {
+  margin: 5px;
+  border: 1px solid;
+  padding: 5px;
+  background: #ddd;
+}
